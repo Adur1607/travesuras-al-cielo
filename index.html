@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cremación de mascotas en Lima. Paquetes transparentes, recojo a domicilio, seguimiento del proceso y atención 24/7.">
+    <title>Travesuras al Cielo | Cremación de Mascotas Premium</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <a href="#inicio" class="skip-link">Ir al contenido</a>
+
+    <header id="main-header">
+        <a href="#inicio" class="logo">Travesuras al Cielo</a>
+        
+        <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav id="nav-links" aria-label="Principal">
+            <a href="#inicio">Inicio</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#proceso">El Proceso</a>
+            <a href="#cobertura">Cobertura</a>
+            <a href="#rastreador">Seguimiento</a>
+            <a href="#contacto" class="nav-btn-urgent">Urgencias 24/7</a>
+        </nav>
+    </header>
+
+    <!-- P2 / P6: situación de duelo + contenido prioritario en el primer viewport -->
+    <section id="inicio">
+        <div class="hero-content">
+            <p class="brand-hero">Travesuras al Cielo</p>
+            <h1>Una despedida digna y llena de amor</h1>
+            <p>Acompañamos el último viaje de tu compañero con respeto y transparencia. Recojo a domicilio en Lima, sin desplazamientos innecesarios.</p>
+            <div class="hero-buttons">
+                <a href="#contacto" class="btn btn-urgent-hero">Necesito ayuda ahora</a>
+                <a href="#servicios" class="btn btn-primary">Ver servicios y costos</a>
+                <a href="tel:+51987654321" class="btn btn-secondary">Llamar 24/7</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- H1 / H2 / P5 / P7: opciones claras con costos y comparación -->
+    <section id="servicios">
+        <h2 class="section-title">Nuestros servicios de cremación</h2>
+        <p class="section-subtitle">Tres opciones transparentes, sin costos ocultos. Compara y elige la más adecuada para tu mascota.</p>
+        
+        <div class="compare-hint" role="note">
+            <strong>Cómo decidir:</strong> Comunitaria si no necesitas cenizas · Individual si deseas urna en casa · Presencial si quieres despedirte en sala.
+        </div>
+
+        <div class="servicios-grid">
+            <article class="service-card" data-service="Comunitaria">
+                <div class="card-badge">Económico</div>
+                <div class="service-content">
+                    <h3>Cremación Comunitaria</h3>
+                    <div class="service-price">
+                        <span class="currency">S/</span>
+                        <span class="amount">120</span>
+                        <span class="cent">.00</span>
+                    </div>
+                    <p class="service-desc">Despedida respetuosa compartida. Las cenizas se esparcen en un jardín conmemorativo.</p>
+                    <ul class="features-list">
+                        <li><span class="check">✔</span> Recojo y traslado de la mascota</li>
+                        <li><span class="check">✔</span> Proceso colectivo respetuoso</li>
+                        <li><span class="check">✔</span> Certificado digital de cremación</li>
+                        <li><span class="check">✔</span> Notificaciones de estado por WhatsApp</li>
+                        <li class="disabled"><span class="cross">✘</span> Entrega de cenizas en domicilio</li>
+                        <li class="disabled"><span class="cross">✘</span> Urna de madera personalizada</li>
+                    </ul>
+                    <a href="#contacto" class="btn card-btn js-select-service" data-service="Comunitaria">Elegir comunitaria</a>
+                </div>
+            </article>
+
+            <article class="service-card featured" data-service="Individual">
+                <div class="card-badge gold">El más elegido</div>
+                <div class="service-content">
+                    <h3>Cremación Individual</h3>
+                    <div class="service-price">
+                        <span class="currency">S/</span>
+                        <span class="amount">250</span>
+                        <span class="cent">.00</span>
+                    </div>
+                    <p class="service-desc">Servicio privado. Garantizamos el retorno seguro de las cenizas de tu mascota.</p>
+                    <ul class="features-list">
+                        <li><span class="check">✔</span> Recojo y traslado personalizado</li>
+                        <li><span class="check">✔</span> Cremación 100% individual</li>
+                        <li><span class="check">✔</span> Urna de madera noble tallada a mano</li>
+                        <li><span class="check">✔</span> Certificado físico y huella en arcilla</li>
+                        <li><span class="check">✔</span> Retorno de cenizas a domicilio</li>
+                        <li><span class="check">✔</span> Notificaciones de estado por WhatsApp</li>
+                    </ul>
+                    <a href="#contacto" class="btn card-btn btn-primary js-select-service" data-service="Individual">Elegir individual</a>
+                </div>
+            </article>
+
+            <article class="service-card" data-service="Presencial">
+                <div class="card-badge">Paz absoluta</div>
+                <div class="service-content">
+                    <h3>Servicio Presencial</h3>
+                    <div class="service-price">
+                        <span class="currency">S/</span>
+                        <span class="amount">420</span>
+                        <span class="cent">.00</span>
+                    </div>
+                    <p class="service-desc">Último adiós en salas privadas y posibilidad de presenciar el inicio del proceso.</p>
+                    <ul class="features-list">
+                        <li><span class="check">✔</span> Prioridad de traslado inmediato</li>
+                        <li><span class="check">✔</span> Acceso a sala de despedida (30 min)</li>
+                        <li><span class="check">✔</span> Urna de madera premium o biourna</li>
+                        <li><span class="check">✔</span> Relicario conmemorativo de cortesía</li>
+                        <li><span class="check">✔</span> Grabación o transmisión en vivo</li>
+                        <li><span class="check">✔</span> Notificaciones de estado por WhatsApp</li>
+                    </ul>
+                    <a href="#contacto" class="btn card-btn js-select-service" data-service="Presencial">Elegir presencial</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- H5 / P3 / P7: proceso + vínculo con el paquete -->
+    <section id="proceso">
+        <h2 class="section-title">¿Cómo es el proceso respetuoso?</h2>
+        <p class="section-subtitle">Cinco pasos claros para que sepas qué ocurre en cada momento y sientas tranquilidad antes de contratar.</p>
+        
+        <div class="proceso-note">
+            <p>El recorrido es el mismo en todos los paquetes. Lo que cambia es si el proceso es colectivo o individual, y si las cenizas regresan a tu hogar (Individual y Presencial).</p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-step">
+                <div class="step-num">1</div>
+                <h4>Recojo y resguardo</h4>
+                <p>Trasladamos a tu mascota en vehículos acondicionados, envuelta en una manta de despedida. Recibes tu código de seguimiento.</p>
+            </div>
+            <div class="timeline-step">
+                <div class="step-num">2</div>
+                <h4>Preparación estética</h4>
+                <p>Acondicionamos a tu mascota en nuestra sala. En Individual y Presencial tomamos su huellita en arcilla.</p>
+            </div>
+            <div class="timeline-step">
+                <div class="step-num">3</div>
+                <h4>Cremación controlada</h4>
+                <p>Bajo normas ambientales y de respeto, de forma individual o colectiva según el servicio que elegiste.</p>
+            </div>
+            <div class="timeline-step">
+                <div class="step-num">4</div>
+                <h4>Cofre y certificación</h4>
+                <p>Certificado oficial. En Individual y Presencial, las cenizas se colocan en la urna seleccionada.</p>
+            </div>
+            <div class="timeline-step">
+                <div class="step-num">5</div>
+                <h4>Retorno a casa</h4>
+                <p>Entrega de urna a domicilio (Individual/Presencial) o confirmación del descanso en el jardín (Comunitaria).</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- H7 / P4 / P7 -->
+    <section id="cobertura">
+        <div class="cobertura-container">
+            <div class="cobertura-text">
+                <h2>¿Llegan a mi domicilio?</h2>
+                <p>Verifica en segundos si atendemos tu distrito. Así confirmas la viabilidad del recojo sin llamadas innecesarias.</p>
+                
+                <div class="checker-box">
+                    <label for="district-select">Selecciona tu distrito</label>
+                    <div class="checker-input-group">
+                        <select id="district-select" aria-describedby="cobertura-result">
+                            <option value="">-- Elige un distrito --</option>
+                            <option value="cobertura-completa">Villa El Salvador</option>
+                            <option value="cobertura-completa">Santiago de Surco</option>
+                            <option value="cobertura-completa">Chorrillos</option>
+                            <option value="cobertura-completa">Miraflores</option>
+                            <option value="cobertura-completa">San Borja</option>
+                            <option value="cobertura-completa">San Juan de Miraflores</option>
+                            <option value="cobertura-completa">Villa María del Triunfo</option>
+                            <option value="cobertura-completa">La Molina</option>
+                            <option value="cobertura-completa">San Isidro</option>
+                            <option value="cobertura-completa">Lince</option>
+                            <option value="cobertura-completa">Jesús María</option>
+                            <option value="cobertura-completa">Barranco</option>
+                            <option value="cobertura-completa">Surquillo</option>
+                            <option value="cobertura-especial">Otros distritos (Lima Norte / Este / Callao)</option>
+                        </select>
+                        <button type="button" id="check-btn" class="btn btn-primary">Verificar</button>
+                    </div>
+                    <div id="cobertura-result" class="feedback-msg" role="status" aria-live="polite"></div>
+                    <p class="helper-text">Si tu distrito no aparece, elige “Otros distritos” o <a href="#contacto">contáctanos</a> para coordinar.</p>
+                </div>
+            </div>
+            <div class="cobertura-map-mock" role="img" aria-label="Mapa ilustrativo de cobertura en Lima">
+                <div class="map-pulse" aria-hidden="true"></div>
+                <span>Cobertura activa 24 horas</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- H4 / P4 / P7: seguimiento + promesa de notificaciones -->
+    <section id="rastreador">
+        <div class="tracker-wrapper">
+            <h2>Seguimiento del servicio</h2>
+            <p>Consulta el estado en cualquier momento e infórmate durante todo el proceso. También te enviamos avisos por WhatsApp en cada etapa.</p>
+
+            <div class="tracker-value-box">
+                <p><strong>¿Cómo obtengo mi código?</strong> Al confirmar el recojo, tu asesor te envía un código (ej. <code>TRAV-2026</code>) por WhatsApp y SMS.</p>
+                <p><strong>Notificaciones:</strong> Recojo → Custodia → Cremación → Urna lista → Retorno. Puedes silenciar avisos cuando quieras respondiendo “STOP”.</p>
+            </div>
+            
+            <div class="tracker-search">
+                <label for="tracker-input" class="visually-hidden">Código de seguimiento</label>
+                <input type="text" id="tracker-input" placeholder="Ej: TRAV-2026" value="TRAV-2026" autocomplete="off" aria-describedby="tracker-help">
+                <button type="button" id="tracker-btn" class="btn btn-primary">Buscar estado</button>
+                <button type="button" id="tracker-clear" class="btn btn-ghost">Limpiar</button>
+            </div>
+            <p id="tracker-help" class="helper-text">Prueba con <strong>TRAV-2026</strong> para ver un ejemplo completo.</p>
+
+            <div id="tracker-feedback" class="feedback-msg" role="status" aria-live="polite"></div>
+
+            <div class="tracker-display" id="tracker-display" hidden>
+                <div class="tracker-header-info">
+                    <span>Mascota: <strong id="tracker-pet">—</strong></span>
+                    <span>Código: <strong id="tracker-code">—</strong></span>
+                </div>
+                
+                <div class="tracker-steps" id="tracker-steps" aria-label="Etapas del servicio"></div>
+                <p class="tracker-status-text" id="tracker-status-text"></p>
+                <p class="tracker-notify-note">También recibirás este avance por WhatsApp al número registrado en tu solicitud.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- H3 / H8 / P2 / P4 / P5 -->
+    <section id="contacto">
+        <div class="contacto-wrapper">
+            <div class="contacto-info">
+                <h2>¿Necesitas ayuda inmediata?</h2>
+                <p>Habla con un asesor ahora mismo. Estamos listos para el traslado a domicilio y para resolver dudas urgentes.</p>
+                
+                <div class="channel-options">
+                    <a href="tel:+51987654321" class="channel-card">
+                        <span class="channel-label">Llamar ahora</span>
+                        <span class="channel-value">+51 987 654 321</span>
+                        <span class="channel-meta">Atención directa 24/7</span>
+                    </a>
+                    <a href="https://wa.me/51987654321?text=Hola%20Travesuras%20al%20Cielo%2C%20necesito%20asistencia%20urgente%20para%20mi%20mascota." class="channel-card channel-whatsapp" target="_blank" rel="noopener noreferrer">
+                        <span class="channel-label">WhatsApp</span>
+                        <span class="channel-value">Escribir al asesor</span>
+                        <span class="channel-meta">Respuesta rápida en minutos</span>
+                    </a>
+                </div>
+
+                <div class="urgency-badge">
+                    Tiempo estimado de llegada del vehículo: 45 a 90 minutos en zonas de cobertura completa.
+                </div>
+            </div>
+            
+            <form class="contacto-form" id="pickup-form" novalidate>
+                <h3>Programar recojo o consulta</h3>
+                <p class="form-instructions">Indica dónde y cuándo. Un asesor te confirmará en menos de 5 minutos para evitar desplazamientos innecesarios.</p>
+                
+                <div class="form-group">
+                    <label for="form-name">Nombre completo</label>
+                    <input type="text" id="form-name" name="name" placeholder="Tu nombre" required autocomplete="name">
+                </div>
+                <div class="form-group">
+                    <label for="form-phone">Celular (WhatsApp)</label>
+                    <input type="tel" id="form-phone" name="phone" placeholder="987 654 321" required autocomplete="tel" inputmode="tel">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="form-district">Distrito del recojo</label>
+                        <select id="form-district" name="district" required>
+                            <option value="">Selecciona distrito</option>
+                            <option value="Villa El Salvador">Villa El Salvador</option>
+                            <option value="Santiago de Surco">Santiago de Surco</option>
+                            <option value="Chorrillos">Chorrillos</option>
+                            <option value="Miraflores">Miraflores</option>
+                            <option value="San Borja">San Borja</option>
+                            <option value="San Juan de Miraflores">San Juan de Miraflores</option>
+                            <option value="Villa María del Triunfo">Villa María del Triunfo</option>
+                            <option value="La Molina">La Molina</option>
+                            <option value="San Isidro">San Isidro</option>
+                            <option value="Lince">Lince</option>
+                            <option value="Jesús María">Jesús María</option>
+                            <option value="Barranco">Barranco</option>
+                            <option value="Surquillo">Surquillo</option>
+                            <option value="Otro">Otro distrito</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-slot">Preferencia de horario</label>
+                        <select id="form-slot" name="slot" required>
+                            <option value="">¿Cuándo?</option>
+                            <option value="Ahora / lo antes posible">Ahora / lo antes posible</option>
+                            <option value="Hoy en la mañana">Hoy en la mañana</option>
+                            <option value="Hoy en la tarde">Hoy en la tarde</option>
+                            <option value="Mañana">Mañana</option>
+                            <option value="Coordinar por teléfono">Coordinar por teléfono</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="form-address">Dirección de recojo</label>
+                    <input type="text" id="form-address" name="address" placeholder="Calle, número, referencia" required autocomplete="street-address">
+                </div>
+                <div class="form-group">
+                    <label for="form-service">Servicio que te interesa</label>
+                    <select id="form-service" name="service" required>
+                        <option value="">¿Qué tipo de servicio buscas?</option>
+                        <option value="Comunitaria">Cremación Comunitaria — S/ 120</option>
+                        <option value="Individual">Cremación Individual — S/ 250</option>
+                        <option value="Presencial">Servicio Presencial — S/ 420</option>
+                        <option value="Urgente">Urgente: recojo ahora (aún no elijo paquete)</option>
+                        <option value="Informacion">Solo deseo información</option>
+                    </select>
+                </div>
+                <fieldset class="form-group channel-fieldset">
+                    <legend>¿Cómo prefieres que te contactemos?</legend>
+                    <div class="radio-row">
+                        <label class="radio-option">
+                            <input type="radio" name="contact-channel" value="WhatsApp" checked>
+                            WhatsApp
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="contact-channel" value="Llamada">
+                            Llamada
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="contact-channel" value="Cualquiera">
+                            Cualquiera
+                        </label>
+                    </div>
+                </fieldset>
+                <div class="form-group">
+                    <label for="form-msg">Datos de tu mascota u otras indicaciones</label>
+                    <textarea id="form-msg" name="message" placeholder="Nombre, peso aproximado, raza u otra indicación..." rows="3"></textarea>
+                </div>
+                <label class="checkbox-option">
+                    <input type="checkbox" id="form-notify" name="notify" checked>
+                    Quiero recibir notificaciones del estado del servicio por WhatsApp
+                </label>
+                <button type="submit" class="btn btn-primary btn-submit">Solicitar contacto / programar recojo</button>
+                <div id="form-feedback" class="feedback-msg" role="status" aria-live="polite"></div>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Travesuras al Cielo. Creado con amor y máximo respeto para nuestras mascotas.</p>
+            <div class="footer-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#servicios">Servicios</a>
+                <a href="#rastreador">Seguimiento</a>
+                <a href="#contacto">Soporte 24h</a>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/51987654321?text=Hola%20Travesuras%20al%20Cielo%2C%20necesito%20asistencia%20respetuosa%20o%20informaci%C3%B3n%20urgente%20para%20mi%20mascota." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Escribir por WhatsApp — asesor rápido">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" aria-hidden="true">
+            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zM223.9 414.7c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 334.1l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+        </svg>
+    </a>
+
+    <script src="app.js"></script>
+</body>
+</html>
