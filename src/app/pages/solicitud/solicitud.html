@@ -1,1 +1,35 @@
-<p>solicitud works!</p>
+<div class="contacto-wrapper" style="margin-top: 50px; justify-content: center; margin-bottom: 50px;">
+    <form class="contacto-form" style="width: 100%; max-width: 650px;" [formGroup]="solicitudForm" (ngSubmit)="onSubmit()">
+        <h3>Agendar Servicio de Cremación</h3>
+        <p class="form-instructions">Selecciona el paquete y la fecha para programar el traslado respetuoso de tu mascota.</p>
+        
+        <div class="form-group">
+            <select formControlName="servicio">
+                <option value="">¿Qué tipo de servicio buscas?</option>
+                <option value="Individual">Cremación Individual (Con urna y cenizas)</option>
+                <option value="Comunitaria">Cremación Comunitaria (Sin cenizas)</option>
+                <option value="Presencial">Servicio Presencial Premium</option>
+            </select>
+            @if (solicitudForm.get('servicio')?.invalid && solicitudForm.get('servicio')?.touched) {
+                <small style="color: #C62828; font-weight: bold;">Debes seleccionar un tipo de servicio.</small>
+            }
+        </div>
+
+        <div class="form-group">
+            <label style="font-size: 0.9rem; color: #666; margin-bottom: 8px; display: block;">Fecha solicitada para el recojo:</label>
+            <input type="date" formControlName="fecha">
+            @if (solicitudForm.get('fecha')?.invalid && solicitudForm.get('fecha')?.touched) {
+                <small style="color: #C62828; font-weight: bold;">La fecha de recojo es obligatoria.</small>
+            }
+        </div>
+
+        <div class="form-group">
+            <textarea formControlName="detalles" placeholder="Indícanos el nombre de tu mascota, peso aproximado y la dirección exacta de recojo..." rows="4"></textarea>
+            @if (solicitudForm.get('detalles')?.invalid && solicitudForm.get('detalles')?.touched) {
+                <small style="color: #C62828; font-weight: bold;">Por favor brinda los detalles de tu mascota y dirección.</small>
+            }
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-submit">Confirmar Solicitud</button>
+    </form>
+</div>

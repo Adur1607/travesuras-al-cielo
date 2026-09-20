@@ -2,15 +2,16 @@
 <header id="main-header" class="scrolled">
     <div class="logo">Travesuras al Cielo</div>
     <nav id="nav-links">
-        <!-- Usamos routerLink en lugar de href para no recargar la página -->
+        
         <a routerLink="/login">Iniciar Sesión</a>
         <a routerLink="/registro">Crear Cuenta</a>
         <a routerLink="/solicitud">Agendar Servicio</a>
         <a routerLink="/rastreador">Rastrear Estado</a>
+        <a routerLink="/cobertura">Cobertura</a>
     </nav>
 </header>
 
-<!-- Contenedor donde Angular inyectará las páginas al hacer clic en el menú -->
+
 <main style="min-height: 80vh; padding-top: 100px;">
     <router-outlet></router-outlet>
 </main>

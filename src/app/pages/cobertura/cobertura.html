@@ -1,0 +1,39 @@
+<div class="cobertura-container" style="margin-top: 80px; margin-bottom: 80px;">
+    <div class="cobertura-text">
+        <h2>Verifica nuestra cobertura</h2>
+        <p>Brindamos atención inmediata y traslado sin costos adicionales en la gran mayoría de distritos de Lima Metropolitana y Lima Sur.</p>
+        
+        <form class="checker-box" [formGroup]="coberturaForm" (ngSubmit)="verificar(selectDistrito.options[selectDistrito.selectedIndex].text)">
+            <label style="font-weight: 600; font-size: 0.9rem; display: block; margin-bottom: 10px;">Selecciona tu distrito:</label>
+            <div class="checker-input-group" style="display: flex; gap: 10px;">
+                <select #selectDistrito formControlName="distrito" style="flex: 1; padding: 12px; border: 1px solid #ccc; border-radius: 8px;">
+                    <option value="">-- Elige un distrito --</option>
+                    <option value="cobertura-completa">Villa El Salvador</option>
+                    <option value="cobertura-completa">Santiago de Surco</option>
+                    <option value="cobertura-completa">Chorrillos</option>
+                    <option value="cobertura-completa">Miraflores</option>
+                    <option value="cobertura-completa">San Borja</option>
+                    <option value="cobertura-completa">San Juan de Miraflores</option>
+                    <option value="cobertura-completa">Villa María del Triunfo</option>
+                    <option value="cobertura-completa">La Molina</option>
+                    <option value="cobertura-completa">San Isidro</option>
+                    <option value="cobertura-completa">Lince / Jesús María</option>
+                    <option value="cobertura-especial">Otros Distritos (Lima Norte / Este)</option>
+                </select>
+                <button type="submit" class="btn btn-primary">Verificar</button>
+            </div>
+            
+            @if (resultado) {
+                <div class="cobertura-result" style="margin-top: 15px; font-weight: 600;"
+                     [style.color]="resultado.tipo === 'success' ? '#2E7D32' : (resultado.tipo === 'warning' ? '#856404' : '#C62828')">
+                    {{ resultado.mensaje }}
+                </div>
+            }
+        </form>
+    </div>
+    
+    <div class="cobertura-map-mock">
+        <div class="map-pulse"></div>
+        <span>Cobertura Activa 24 horas</span>
+    </div>
+</div>
