@@ -1,0 +1,22 @@
+<div class="contacto-wrapper" style="margin-top: 50px; justify-content: center;">
+    <form class="contacto-form" style="width: 100%; max-width: 500px;" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <h3>Iniciar Sesión</h3>
+        <p class="form-instructions">Ingresa tus credenciales para acceder a tu cuenta.</p>
+        
+        <div class="form-group">
+            <input type="email" formControlName="correo" placeholder="Correo Electrónico">
+            @if (loginForm.get('correo')?.invalid && loginForm.get('correo')?.touched) {
+                <small style="color: #C62828; font-weight: bold;">Ingresa un correo válido.</small>
+            }
+        </div>
+
+        <div class="form-group">
+            <input type="password" formControlName="password" placeholder="Contraseña">
+            @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+                <small style="color: #C62828; font-weight: bold;">La contraseña es obligatoria.</small>
+            }
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-submit">Ingresar</button>
+    </form>
+</div>
