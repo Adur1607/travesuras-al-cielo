@@ -1,42 +1,43 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-cobertura',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './cobertura.html',
   styleUrl: './cobertura.css'
 })
 export class CoberturaComponent {
-  coberturaForm = new FormGroup({
-    distrito: new FormControl('', Validators.required)
-  });
+  coberturaForm: FormGroup;
+  resultado: any = null;
 
-  resultado: { mensaje: string, tipo: 'success' | 'warning' | 'error' } | null = null;
+  constructor(private fb: FormBuilder) {
+    this.coberturaForm = this.fb.group({
+      distrito: ['', Validators.required]
+    });
+  }
 
+  // Recibimos el nombre exacto del distrito desde el HTML
   verificar(nombreDistrito: string) {
-    if (this.coberturaForm.valid) {
-      const valor = this.coberturaForm.get('distrito')?.value;
+    if (this.coberturaForm.invalid || !nombreDistrito || nombreDistrito.includes('--')) {
+      this.resultado = null;
+      return;
+    }
 
-      if (valor === 'cobertura-completa') {
-        this.resultado = {
-          tipo: 'success',
-          mensaje: `✓ ¡Excelente! Tenemos cobertura completa e inmediata en ${nombreDistrito}. Traslado gratuito incluido en el paquete individual.`
-        };
-      } else if (valor === 'cobertura-especial') {
-        this.resultado = {
-          tipo: 'warning',
-          mensaje: `➔ En ${nombreDistrito} atendemos de forma programada o especial. Por favor, contáctanos directamente para coordinar el tiempo de llegada.`
-        };
-      }
-    } else {
+    const valorSelect = this.coberturaForm.get('distrito')?.value;
+
+    // Inyectamos la variable nombreDistrito en el mensaje
+    if (valorSelect === 'cobertura-completa') {
       this.resultado = {
-        tipo: 'error',
-        mensaje: 'Por favor, selecciona un distrito válido.'
+        tipo: 'success',
+        mensaje: `✓ ¡Excelente! Tenemos cobertura completa e inmediata en ${nombreDistrito}. Traslado gratuito incluido en el paquete individual.`
       };
-      this.coberturaForm.markAllAsTouched();
+    } else if (valorSelect === 'cobertura-especial') {
+      this.resultado = {
+        tipo: 'warning',
+        mensaje: `⚠️ Para la zona de ${nombreDistrito}, el recojo está sujeto a disponibilidad y podría tener un recargo por distancia. Contáctanos para coordinar.`
+      };
     }
   }
 }

@@ -1,22 +1,35 @@
-<div class="contacto-wrapper" style="margin-top: 50px; justify-content: center;">
-    <form class="contacto-form" style="width: 100%; max-width: 500px;" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <h3>Iniciar Sesión</h3>
-        <p class="form-instructions">Ingresa tus credenciales para acceder a tu cuenta.</p>
+<div class="split-layout">
+    
+    <!-- Lado Izquierdo: Retrato del Pug -->
+    <div class="split-image"></div>
+
+    <!-- Lado Derecho: Formulario Minimalista -->
+    <div class="split-form">
+        <h2>Iniciar Sesión</h2>
+        <p class="subtitle">Ingresa tus credenciales para acceder a tu cuenta.</p>
         
-        <div class="form-group">
-            <input type="email" formControlName="correo" placeholder="Correo Electrónico">
-            @if (loginForm.get('correo')?.invalid && loginForm.get('correo')?.touched) {
-                <small style="color: #C62828; font-weight: bold;">Ingresa un correo válido.</small>
-            }
-        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            
+            <div class="form-group">
+                <input type="email" formControlName="correo" class="split-input" placeholder="Correo Electrónico">
+                @if (loginForm.get('correo')?.invalid && loginForm.get('correo')?.touched) {
+                    <small class="error-text">Ingresa un correo válido.</small>
+                }
+            </div>
 
-        <div class="form-group">
-            <input type="password" formControlName="password" placeholder="Contraseña">
-            @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
-                <small style="color: #C62828; font-weight: bold;">La contraseña es obligatoria.</small>
-            }
-        </div>
+            <div class="form-group">
+                <input type="password" formControlName="password" class="split-input" placeholder="Contraseña">
+                @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+                    <small class="error-text">La contraseña es obligatoria.</small>
+                }
+            </div>
 
-        <button type="submit" class="btn btn-primary btn-submit">Ingresar</button>
-    </form>
+            <button type="submit" class="btn-mocha">Ingresar</button>
+            
+            <p class="form-footer">
+                ¿No tienes una cuenta? <a routerLink="/registro">Regístrate aquí</a>
+            </p>
+        </form>
+    </div>
+
 </div>

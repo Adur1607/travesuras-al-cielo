@@ -1,58 +1,48 @@
-<div class="tracker-wrapper" style="margin-top: 60px; margin-bottom: 60px;">
-    <h2>Rastrea el proceso de tu mascota</h2>
-    <p>Ingresa tu código de seguimiento brindado por nuestro asesor.</p>
-    
-    <form class="tracker-search" [formGroup]="rastreadorForm" (ngSubmit)="buscar()">
-        <div style="flex: 1; display: flex; flex-direction: column; text-align: left;">
+<div class="tracker-container">
+    <div class="tracker-header">
+        <h2>Rastrea el proceso</h2>
+        <p>Ingresa tu código de seguimiento para conocer el estado actual de tu mascota.</p>
+    </div>
+
+    <!-- Barra de búsqueda horizontal -->
+    <form class="tracker-search-bar" [formGroup]="rastreadorForm" (ngSubmit)="buscar()">
+        <div class="input-wrapper">
             <input type="text" formControlName="codigo" placeholder="Ej: TRAV-2026">
             @if (rastreadorForm.get('codigo')?.invalid && rastreadorForm.get('codigo')?.touched) {
-                <small style="color: #C62828; font-weight: bold; margin-top: 5px;">Por favor ingresa un código válido.</small>
+                <small class="error-inline">Ingresa un código válido</small>
             }
         </div>
-        <button type="submit" class="btn btn-primary">Buscar Estado</button>
+        <button type="submit" class="btn-mocha-search">Buscar</button>
     </form>
 
-    <!-- Esta sección SOLO aparece si ya se hizo una búsqueda válida -->
+    <!-- Resultados (Se muestran al buscar) -->
     @if (busquedaRealizada && resultado) {
-        <div class="tracker-display">
-            <div class="tracker-header-info">
-                <span>Mascota: <strong>"{{ resultado.mascota }}"</strong></span>
-                <span>Código: <strong>{{ resultado.codigo }}</strong></span>
+        <div class="tracker-results">
+            <div class="tracker-display">
+                <div class="tracker-header-info">
+                    <span>Mascota: <strong>"{{ resultado.mascota }}"</strong></span>
+                    <span>Código: <strong>{{ resultado.codigo }}</strong></span>
+                </div>
+                
+                <div class="tracker-steps">
+                    <div class="t-step completed"><div class="circle">✓</div><span>Recojo</span></div>
+                    
+                    <div class="t-step" [class.completed]="resultado.estado === 'Cremacion'" [class.active]="resultado.estado === 'Custodia'">
+                        <div class="circle">{{ resultado.estado === 'Cremacion' ? '✓' : '🛡️' }}</div><span>Custodia</span>
+                    </div>
+                    
+                    <div class="t-step" [class.active]="resultado.estado === 'Cremacion'">
+                        <div class="circle">{{ resultado.estado === 'Cremacion' ? '🔥' : '⏳' }}</div><span>Cremación</span>
+                    </div>
+                    
+                    <div class="t-step"><div class="circle">⏳</div><span>Urna</span></div>
+                    <div class="t-step"><div class="circle">🚗</div><span>Retorno</span></div>
+                </div>
+                
+                <p class="tracker-status-text">
+                    <strong>Estado actual:</strong> {{ resultado.mensaje }}
+                </p>
             </div>
-            
-            <div class="tracker-steps">
-                <!-- Paso 1: Recojo (Siempre completado) -->
-                <div class="t-step completed">
-                    <div class="circle">✓</div>
-                    <span>Recojo</span>
-                </div>
-                
-                <!-- Paso 2: Custodia -->
-                <div class="t-step" [class.completed]="resultado.estado === 'Cremacion'" [class.active]="resultado.estado === 'Custodia'">
-                    <div class="circle">{{ resultado.estado === 'Cremacion' ? '✓' : '🛡️' }}</div>
-                    <span>Custodia</span>
-                </div>
-                
-                <!-- Paso 3: Cremación -->
-                <div class="t-step" [class.active]="resultado.estado === 'Cremacion'">
-                    <div class="circle">{{ resultado.estado === 'Cremacion' ? '🔥' : '⏳' }}</div>
-                    <span>Cremación</span>
-                </div>
-                
-                <!-- Paso 4 y 5: Pendientes -->
-                <div class="t-step">
-                    <div class="circle">⏳</div>
-                    <span>Urna Lista</span>
-                </div>
-                <div class="t-step">
-                    <div class="circle">🚗</div>
-                    <span>Retorno</span>
-                </div>
-            </div>
-            
-            <p class="tracker-status-text">
-                <strong>Estado actual:</strong> {{ resultado.mensaje }}
-            </p>
         </div>
     }
 </div>

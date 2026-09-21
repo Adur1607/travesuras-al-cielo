@@ -1,8 +1,8 @@
-<!-- Cabecera adaptada para Angular -->
-<header id="main-header" class="scrolled">
+
+<header id="main-header" [class.scrolled]="isScrolled || !isHomePage">
     <div class="logo">Travesuras al Cielo</div>
     <nav id="nav-links">
-        
+        <a routerLink="/home">Inicio</a>
         <a routerLink="/login">Iniciar Sesión</a>
         <a routerLink="/registro">Crear Cuenta</a>
         <a routerLink="/solicitud">Agendar Servicio</a>
@@ -11,12 +11,11 @@
     </nav>
 </header>
 
-
-<main style="min-height: 80vh; padding-top: 100px;">
+<!-- Contenedor limpio SIN padding para que la imagen suba hasta el tope -->
+<main>
     <router-outlet></router-outlet>
 </main>
 
-<!-- Pie de página original -->
 <footer>
     <div class="footer-content">
         <p>&copy; 2026 Travesuras al Cielo. Creado con amor y máximo respeto para nuestras mascotas.</p>

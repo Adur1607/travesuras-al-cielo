@@ -1,36 +1,49 @@
-<div class="contacto-wrapper" style="margin-top: 50px; justify-content: center;">
-    <form class="contacto-form" style="width: 100%; max-width: 600px;" [formGroup]="registroForm" (ngSubmit)="onSubmit()">
-        <h3>Registro de Nuevo Cliente</h3>
-        <p class="form-instructions">Crea tu cuenta para gestionar los servicios de tu compañero.</p>
+<div class="split-layout">
+    
+    <!-- Lado Izquierdo: Visual Emocional (Abrazo) -->
+    <div class="split-image" style="background: url('https://images.unsplash.com/photo-1522276498395-f4f68f7f8454?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;"></div>
+
+    <!-- Lado Derecho: Formulario Minimalista -->
+    <div class="split-form">
+        <h2>Crear Cuenta</h2>
+        <p class="subtitle">Únete a nuestra familia para gestionar los servicios de tu compañero.</p>
         
-        <div class="form-group">
-            <input type="text" formControlName="nombre" placeholder="Tu Nombre Completo">
-            @if (registroForm.get('nombre')?.invalid && registroForm.get('nombre')?.touched) {
-                <small style="color: #C62828; font-weight: bold;">El nombre es obligatorio.</small>
-            }
-        </div>
+        <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+            
+            <div class="form-group">
+                <input type="text" formControlName="nombreCompleto" class="split-input" placeholder="Nombre Completo">
+                @if (registroForm.get('nombreCompleto')?.invalid && registroForm.get('nombreCompleto')?.touched) {
+                    <small class="error-text">El nombre es obligatorio.</small>
+                }
+            </div>
 
-        <div class="form-group">
-            <input type="email" formControlName="correo" placeholder="Correo Electrónico">
-            @if (registroForm.get('correo')?.invalid && registroForm.get('correo')?.touched) {
-                <small style="color: #C62828; font-weight: bold;">Ingresa un correo válido.</small>
-            }
-        </div>
+            <div class="form-group">
+                <input type="email" formControlName="correo" class="split-input" placeholder="Correo Electrónico">
+                @if (registroForm.get('correo')?.invalid && registroForm.get('correo')?.touched) {
+                    <small class="error-text">Ingresa un correo válido.</small>
+                }
+            </div>
 
-        <div class="form-group">
-            <input type="text" formControlName="mascota" placeholder="Nombre de tu Mascota">
-            @if (registroForm.get('mascota')?.invalid && registroForm.get('mascota')?.touched) {
-                <small style="color: #C62828; font-weight: bold;">El nombre de la mascota es obligatorio.</small>
-            }
-        </div>
+            <div class="form-group">
+                <input type="password" formControlName="password" class="split-input" placeholder="Crear Contraseña">
+                @if (registroForm.get('password')?.invalid && registroForm.get('password')?.touched) {
+                    <small class="error-text">Debe tener al menos 6 caracteres.</small>
+                }
+            </div>
 
-        <div class="form-group">
-            <input type="tel" formControlName="telefono" placeholder="Número de Celular">
-            @if (registroForm.get('telefono')?.invalid && registroForm.get('telefono')?.touched) {
-                <small style="color: #C62828; font-weight: bold;">El número de celular es obligatorio.</small>
-            }
-        </div>
+            <div class="form-group">
+                <input type="text" formControlName="celular" class="split-input" placeholder="Número de Celular">
+                @if (registroForm.get('celular')?.invalid && registroForm.get('celular')?.touched) {
+                    <small class="error-text">El número de celular es obligatorio.</small>
+                }
+            </div>
 
-        <button type="submit" class="btn btn-primary btn-submit">Crear Cuenta</button>
-    </form>
+            <button type="submit" class="btn-mocha">Crear Cuenta</button>
+            
+            <p class="form-footer">
+                ¿Ya tienes una cuenta? <a routerLink="/login">Inicia sesión</a>
+            </p>
+        </form>
+    </div>
+
 </div>

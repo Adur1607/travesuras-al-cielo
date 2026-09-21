@@ -1,0 +1,136 @@
+/* Contenedor central con mucho espacio en blanco (Ample whitespace) */
+.tracker-container {
+    max-width: 800px;
+    margin: 160px auto 100px auto;
+    text-align: center;
+    padding: 0 20px;
+    min-height: 60vh;
+}
+
+.tracker-header h2 {
+    font-family: 'Playfair Display', serif;
+    color: #3E2723;
+    font-size: 3.2rem;
+    margin-bottom: 15px;
+    margin-top: 0;
+}
+
+.tracker-header p {
+    font-family: 'Montserrat', sans-serif;
+    color: #795548;
+    font-size: 1.1rem;
+    margin-bottom: 50px;
+}
+
+/* Diseño de la barra horizontal */
+.tracker-search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 600px;
+    margin: 0 auto;
+    gap: 15px;
+}
+
+.input-wrapper {
+    flex: 1;
+    position: relative;
+    text-align: left;
+}
+
+.tracker-search-bar input {
+    width: 100%;
+    padding: 18px 30px;
+    font-size: 1.1rem;
+    border: 1px solid #EAE3DC;
+    border-radius: 50px; /* Forma de píldora moderna */
+    background-color: #FFFFFF;
+    font-family: 'Montserrat', sans-serif;
+    color: #4E342E;
+    box-shadow: 0 10px 30px rgba(110, 75, 50, 0.05);
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.tracker-search-bar input:focus {
+    outline: none;
+    border-color: #6E4B32;
+    box-shadow: 0 0 0 4px rgba(110, 75, 50, 0.1);
+}
+
+.btn-mocha-search {
+    background-color: #6E4B32;
+    color: #FFFFFF;
+    border: none;
+    padding: 18px 45px;
+    border-radius: 50px; /* Forma de píldora */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 10px 20px rgba(110, 75, 50, 0.15);
+}
+
+.btn-mocha-search:hover {
+    background-color: #5A3D29;
+}
+
+.error-inline {
+    color: #C62828;
+    font-weight: bold;
+    font-size: 0.85rem;
+    position: absolute;
+    bottom: -25px;
+    left: 20px;
+}
+
+/* Tarjeta de resultados rediseñada para ser elegante */
+.tracker-results {
+    margin-top: 60px;
+    animation: fadeIn 0.5s ease;
+}
+
+.tracker-display {
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(110, 75, 50, 0.08);
+    padding: 40px;
+    text-align: left;
+}
+
+.tracker-header-info { 
+    display: flex; justify-content: space-between; 
+    border-bottom: 1px solid #EAE3DC; 
+    padding-bottom: 15px; margin-bottom: 35px; 
+    font-family: 'Montserrat', sans-serif; color: #4E342E;
+}
+
+/* Estilos de la línea de tiempo del proceso */
+.tracker-steps { display: flex; justify-content: space-between; margin-bottom: 35px; }
+.t-step { text-align: center; flex: 1; position: relative; color: #A1887F; font-family: 'Montserrat', sans-serif; font-size: 0.9rem;}
+.t-step .circle { width: 45px; height: 45px; background-color: #FCFAFA; border: 2px solid #EAE3DC; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px auto; font-size: 1.2rem; z-index: 2; position: relative; transition: all 0.3s ease;}
+.t-step::after { content: ''; position: absolute; top: 22px; left: 50%; width: 100%; height: 2px; background-color: #EAE3DC; z-index: 1; }
+.t-step:last-child::after { display: none; }
+
+.t-step.completed .circle { background-color: #4CAF50; border-color: #4CAF50; color: white; }
+.t-step.completed::after { background-color: #4CAF50; }
+.t-step.active .circle { border-color: #6E4B32; color: #6E4B32; box-shadow: 0 0 0 4px rgba(110, 75, 50, 0.1); }
+.t-step.active span { font-weight: bold; color: #3E2723; }
+
+.tracker-status-text { 
+    background-color: #FCFAFA; padding: 20px; border-radius: 10px; 
+    font-family: 'Montserrat', sans-serif; color: #5A3D29; 
+    line-height: 1.6; border-left: 4px solid #6E4B32; 
+}
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Adaptación para celular */
+@media (max-width: 768px) {
+    .tracker-search-bar { flex-direction: column; }
+    .input-wrapper { width: 100%; }
+    .btn-mocha-search { width: 100%; }
+    .tracker-steps { flex-direction: column; gap: 20px; }
+    .t-step::after { display: none; }
+}
