@@ -1,47 +1,57 @@
+
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import {
+  SeguimientoService,
+  SeguimientoMascota
+} from '../../services/seguimiento';
 
 @Component({
   selector: 'app-rastreador',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './rastreador.html',
   styleUrl: './rastreador.css'
 })
 export class RastreadorComponent {
-  rastreadorForm = new FormGroup({
-    codigo: new FormControl('', Validators.required)
-  });
 
-  // Variables para controlar lo que se muestra en pantalla
-  busquedaRealizada = false;
-  resultado: any = null;
+  codigo = '';
+  mascota: SeguimientoMascota | null = null;
+  mensajeError = '';
 
-  buscar() {
-    if (this.rastreadorForm.valid) {
-      const code = this.rastreadorForm.get('codigo')?.value?.trim().toUpperCase();
-      this.busquedaRealizada = true;
+  constructor(private seguimientoService: SeguimientoService) {}
 
-      // Simulamos la lógica que tenías en tu app.js original
-      if (code === 'TRAV-2026') {
-        this.resultado = {
-          mascota: 'Peluchín',
-          codigo: code,
-          estado: 'Cremacion', // Fase actual
-          mensaje: 'Tu mascota se encuentra en el proceso de cremación individual bajo el protocolo respetuoso. Estimamos concluir esta fase a las 12:30 PM.'
-        };
-      } else {
-        // Respuesta dinámica para cualquier otro código
-        this.resultado = {
-          mascota: 'Fiel Amigo',
-          codigo: code,
-          estado: 'Custodia', // Fase actual
-          mensaje: 'Hemos recibido a tu mascota en nuestras salas de resguardo climatizadas. El proceso de preparación ha iniciado de manera respetuosa.'
-        };
-      }
+  buscarSeguimiento(): void {
+    const resultado = this.seguimientoService.buscarPorCodigo(this.codigo);
+
+    if (resultado) {
+      this.mascota = resultado;
+      this.mensajeError = '';
     } else {
-      this.rastreadorForm.markAllAsTouched();
+      this.mascota = null;
+      this.mensajeError = 'No encontramos una solicitud con ese código.';
     }
+  }
+
+  obtenerPasos(): { nombre: string; completado: boolean; activo: boolean }[] {
+    const estados = [
+      'Solicitud recibida',
+      'En recojo',
+      'En planta',
+      'En cremación',
+      'Cremación finalizada',
+      'Urna preparada',
+      'Listo para entrega'
+    ];
+
+    const estadoActual = this.mascota?.estado ?? '';
+    const indiceActual = estados.indexOf(estadoActual);
+
+    return estados.map((nombre, indice) => ({
+      nombre,
+      completado: indiceActual >= 0 && indice < indiceActual,
+      activo: indice === indiceActual
+    }));
   }
 }

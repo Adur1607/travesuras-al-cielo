@@ -1,0 +1,144 @@
+
+<div class="evaluacion-container">
+  <header class="evaluacion-header">
+    <span class="subtitulo">TRAVESURAS AL CIELO</span>
+    <h1>Tu opinión nos importa</h1>
+    <p>
+      Queremos saber cómo fue tu experiencia y seguir mejorando nuestro servicio.
+    </p>
+  </header>
+
+  @if (!enviado) {
+    <section class="evaluacion-card">
+      <div class="icono-principal">♥</div>
+
+      <h2>Confirmación de recepción</h2>
+      <p class="descripcion">
+        Ingresa el código de seguimiento para comprobar que la urna está preparada.
+      </p>
+
+      <div class="campo">
+        <label for="codigo">Código de seguimiento</label>
+        <input
+          id="codigo"
+          type="text"
+          name="codigo"
+          [(ngModel)]="codigo"
+          placeholder="Ej. TRAV-2026"
+          required
+        />
+      </div>
+
+      @if (!confirmado) {
+        <button
+          type="button"
+          class="btn-principal"
+          (click)="confirmarRecepcion()"
+        >
+          Confirmar recepción de la urna
+        </button>
+      } @else {
+        <div class="confirmacion-ok" role="status">
+          <span>✓</span>
+          Recepción confirmada para esta demostración.
+        </div>
+
+        <div class="separador"></div>
+
+        <h2>¿Cómo calificarías nuestro servicio?</h2>
+        <p class="descripcion">
+          Selecciona de 1 a 5 estrellas.
+        </p>
+
+        <div class="estrellas" role="group" aria-label="Calificación del servicio">
+          @for (estrella of [1, 2, 3, 4, 5]; track estrella) {
+            <button
+              type="button"
+              class="estrella"
+              [class.seleccionada]="estrella <= calificacion"
+              [attr.aria-label]="estrella + ' estrellas'"
+              [attr.aria-pressed]="calificacion === estrella"
+              (click)="calificacion = estrella"
+            >
+              ★
+            </button>
+          }
+        </div>
+
+        <p class="texto-calificacion">
+          @if (calificacion === 0) {
+            Selecciona tu calificación
+          } @else if (calificacion === 1) {
+            Muy insatisfecho
+          } @else if (calificacion === 2) {
+            Insatisfecho
+          } @else if (calificacion === 3) {
+            Regular
+          } @else if (calificacion === 4) {
+            Satisfecho
+          } @else {
+            Muy satisfecho
+          }
+        </p>
+
+        <div class="campo">
+          <label for="comentario">Comentario (opcional)</label>
+          <textarea
+            id="comentario"
+            name="comentario"
+            [(ngModel)]="comentario"
+            rows="4"
+            maxlength="500"
+            placeholder="Cuéntanos cómo fue tu experiencia..."
+          ></textarea>
+          <small>{{ comentario.length }}/500 caracteres</small>
+        </div>
+
+        <button
+          type="button"
+          class="btn-principal"
+          (click)="enviarEvaluacion()"
+          [disabled]="calificacion === 0"
+        >
+          Enviar evaluación
+        </button>
+      }
+    </section>
+  }
+
+  @if (mensajeError) {
+    <div class="mensaje-error" role="alert">
+      {{ mensajeError }}
+    </div>
+  }
+
+  @if (enviado) {
+    <section class="evaluacion-card resultado-final">
+      <div class="icono-exito">✓</div>
+      <h2>¡Gracias por tu confianza!</h2>
+      <p>
+        Tu evaluación se ha registrado correctamente. Agradecemos que nos
+        ayudes a mejorar nuestro servicio.
+      </p>
+
+      <div class="resumen-estrellas">
+        @for (estrella of [1, 2, 3, 4, 5]; track estrella) {
+          <span [class.seleccionada]="estrella <= calificacion">★</span>
+        }
+      </div>
+
+      <button
+        type="button"
+        class="btn-secundario"
+        (click)="enviado = false"
+      >
+        Volver al formulario
+      </button>
+    </section>
+  }
+
+  <p class="aviso-demo">
+    Sistema de demostración. Las evaluaciones se guardan localmente en este navegador.
+  </p>
+</div>
+

@@ -1,34 +1,91 @@
+
 <div class="split-layout">
-    
-    <!-- Lado Izquierdo: Retrato del Pug -->
+
+    <!-- Lado izquierdo: imagen -->
     <div class="split-image"></div>
 
-    <!-- Lado Derecho: Formulario Minimalista -->
+    <!-- Lado derecho: formulario -->
     <div class="split-form">
         <h2>Iniciar Sesión</h2>
-        <p class="subtitle">Ingresa tus credenciales para acceder a tu cuenta.</p>
-        
+
+        <p class="subtitle">
+            Ingresa tus credenciales para acceder a tu cuenta.
+        </p>
+
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-            
+
+            <!-- Tipo de usuario -->
             <div class="form-group">
-                <input type="email" formControlName="correo" class="split-input" placeholder="Correo Electrónico">
-                @if (loginForm.get('correo')?.invalid && loginForm.get('correo')?.touched) {
-                    <small class="error-text">Ingresa un correo válido.</small>
+                <select
+                    formControlName="rol"
+                    class="split-input"
+                    aria-label="Tipo de usuario"
+                >
+                    <option value="cliente">Ingresar como cliente</option>
+                    <option value="administrador">
+                        Ingresar como administrador
+                    </option>
+                </select>
+            </div>
+
+            <!-- Mensaje de error de autenticación -->
+            @if (errorLogin) {
+                <div class="error-text" role="alert" aria-live="assertive">
+                    {{ errorLogin }}
+                </div>
+            }
+
+            <!-- Correo electrónico -->
+            <div class="form-group">
+                <input
+                    type="email"
+                    formControlName="correo"
+                    class="split-input"
+                    placeholder="Correo Electrónico"
+                    autocomplete="username"
+                >
+
+                @if (
+                    loginForm.get('correo')?.invalid &&
+                    loginForm.get('correo')?.touched
+                ) {
+                    <small class="error-text">
+                        Ingresa un correo electrónico válido.
+                    </small>
                 }
             </div>
 
+            <!-- Contraseña -->
             <div class="form-group">
-                <input type="password" formControlName="password" class="split-input" placeholder="Contraseña">
-                @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
-                    <small class="error-text">La contraseña es obligatoria.</small>
+                <input
+                    type="password"
+                    formControlName="password"
+                    class="split-input"
+                    placeholder="Contraseña"
+                    autocomplete="current-password"
+                >
+
+                @if (
+                    loginForm.get('password')?.invalid &&
+                    loginForm.get('password')?.touched
+                ) {
+                    <small class="error-text">
+                        La contraseña debe tener al menos 6 caracteres.
+                    </small>
                 }
             </div>
 
-            <button type="submit" class="btn-mocha">Ingresar</button>
-            
+            <!-- Botón de inicio de sesión -->
+            <button type="submit" class="btn-mocha">
+                Ingresar
+            </button>
+
+            <!-- Enlace al registro -->
             <p class="form-footer">
-                ¿No tienes una cuenta? <a routerLink="/registro">Regístrate aquí</a>
+                ¿No tienes una cuenta?
+                <a routerLink="/registro">Regístrate aquí</a>
             </p>
+
         </form>
     </div>
 

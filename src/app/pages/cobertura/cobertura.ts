@@ -1,5 +1,16 @@
+
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule
+} from '@angular/forms';
+
+interface ResultadoCobertura {
+  tipo: 'info' | 'warning';
+  mensaje: string;
+}
 
 @Component({
   selector: 'app-cobertura',
@@ -10,7 +21,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 })
 export class CoberturaComponent {
   coberturaForm: FormGroup;
-  resultado: any = null;
+  resultado: ResultadoCobertura | null = null;
 
   constructor(private fb: FormBuilder) {
     this.coberturaForm = this.fb.group({
@@ -18,26 +29,43 @@ export class CoberturaComponent {
     });
   }
 
-  // Recibimos el nombre exacto del distrito desde el HTML
-  verificar(nombreDistrito: string) {
-    if (this.coberturaForm.invalid || !nombreDistrito || nombreDistrito.includes('--')) {
+  verificar(nombreDistrito: string): void {
+    if (this.coberturaForm.invalid) {
+      this.coberturaForm.markAllAsTouched();
       this.resultado = null;
       return;
     }
 
-    const valorSelect = this.coberturaForm.get('distrito')?.value;
+    const valorSeleccionado =
+      this.coberturaForm.controls['distrito'].value;
 
-    // Inyectamos la variable nombreDistrito en el mensaje
-    if (valorSelect === 'cobertura-completa') {
+    if (valorSeleccionado === 'cobertura-completa') {
       this.resultado = {
-        tipo: 'success',
-        mensaje: `✓ ¡Excelente! Tenemos cobertura completa e inmediata en ${nombreDistrito}. Traslado gratuito incluido en el paquete individual.`
+        tipo: 'info',
+        mensaje:
+          `El distrito seleccionado (${nombreDistrito}) figura ` +
+          'en nuestra lista de zonas principales. Confirma la ' +
+          'disponibilidad y el costo del traslado con un asesor.'
       };
-    } else if (valorSelect === 'cobertura-especial') {
+      return;
+    }
+
+    if (valorSeleccionado === 'cobertura-especial') {
       this.resultado = {
         tipo: 'warning',
-        mensaje: `⚠️ Para la zona de ${nombreDistrito}, el recojo está sujeto a disponibilidad y podría tener un recargo por distancia. Contáctanos para coordinar.`
+        mensaje:
+          'Esta opción corresponde a zonas por confirmar. ' +
+          'Contacta con un asesor para verificar la disponibilidad ' +
+          'y cualquier costo adicional.'
       };
+      return;
     }
+
+    this.resultado = {
+      tipo: 'warning',
+      mensaje:
+        'No se reconoce la opción seleccionada. ' +
+        'Elige un distrito de la lista.'
+    };
   }
 }

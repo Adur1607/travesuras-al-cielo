@@ -1,0 +1,105 @@
+
+<div class="operario-container">
+  <header class="operario-header">
+    <div>
+      <h1>Panel del operario</h1>
+      <p>Seguimiento del proceso de cremación de mascotas</p>
+    </div>
+    <span class="operario-badge">Operario de planta</span>
+  </header>
+
+  <section class="operario-summary">
+    <div class="summary-card">
+      <span>Mascotas en seguimiento</span>
+      <strong>{{ mascotas.length }}</strong>
+    </div>
+  </section>
+
+  <section class="mascotas-section">
+    <h2>Procesos de cremación</h2>
+    <p class="section-description">
+      Actualiza el estado de cada mascota según el avance del proceso.
+    </p>
+
+    @if (mascotas.length > 0) {
+      <div class="mascotas-grid">
+        @for (mascota of mascotas; track mascota.id) {
+          <article class="mascota-card">
+            <div class="mascota-card-header">
+              <div>
+                <span class="mascota-id">Solicitud #{{ mascota.id }}</span>
+                <h3>{{ mascota.mascota }}</h3>
+                <p class="cliente-name">{{ mascota.cliente }}</p>
+              </div>
+
+              <span
+                class="estado-badge"
+                [class.estado-inicial]="mascota.estado === 'En cremación'"
+                [class.estado-finalizado]="mascota.estado === 'Cremación finalizada'"
+                [class.estado-preparado]="mascota.estado === 'Urna preparada'"
+              >
+                {{ mascota.estado }}
+              </span>
+            </div>
+
+            <div class="mascota-details">
+              <p>
+                <strong>Servicio:</strong>
+                {{ mascota.servicio }}
+              </p>
+              <p>
+                <strong>Fecha:</strong>
+                {{ mascota.fecha }}
+              </p>
+            </div>
+
+            <div class="acciones-section">
+              <h4>Actualizar estado</h4>
+
+              <div class="acciones-botones">
+                <button
+                  type="button"
+                  class="btn-estado"
+                  [class.btn-activo]="mascota.estado === 'En cremación'"
+                  [disabled]="mascota.estado === 'En cremación'"
+                  (click)="actualizarEstado(mascota, 'En cremación')"
+                >
+                  En cremación
+                </button>
+
+                <button
+                  type="button"
+                  class="btn-estado"
+                  [class.btn-activo]="mascota.estado === 'Cremación finalizada'"
+                  [disabled]="mascota.estado === 'Cremación finalizada'"
+                  (click)="actualizarEstado(mascota, 'Cremación finalizada')"
+                >
+                  Cremación finalizada
+                </button>
+
+                <button
+                  type="button"
+                  class="btn-estado"
+                  [class.btn-activo]="mascota.estado === 'Urna preparada'"
+                  [disabled]="mascota.estado === 'Urna preparada'"
+                  (click)="actualizarEstado(mascota, 'Urna preparada')"
+                >
+                  Urna preparada
+                </button>
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+    } @else {
+      <p class="empty-message">
+        No hay mascotas registradas para procesar.
+      </p>
+    }
+  </section>
+
+  <p class="demo-notice">
+    Información de demostración. Los cambios todavía no se guardan en una base de datos.
+  </p>
+</div>
+
