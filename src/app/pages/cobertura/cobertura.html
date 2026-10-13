@@ -30,7 +30,14 @@
                     </div>
                     
                     @if (resultado) {
-                        <div class="coverage-result" [class.success]="resultado.tipo === 'success'" [class.warning]="resultado.tipo === 'warning'" [class.error]="resultado.tipo === 'error'">
+                        
+                            <div
+    class="coverage-result"
+    [class.success]="resultado.tipo === 'info'"
+    [class.warning]="resultado.tipo === 'warning'"
+    role="status"
+    aria-live="polite"
+>
                             {{ resultado.mensaje }}
                         </div>
                     }

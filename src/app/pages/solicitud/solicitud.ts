@@ -1,6 +1,12 @@
+
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormGroup,
+  FormControl,
+  Validators
+} from '@angular/forms';
 
 @Component({
   selector: 'app-solicitud',
@@ -10,19 +16,58 @@ import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angula
   styleUrl: './solicitud.css'
 })
 export class SolicitudComponent {
+  readonly fechaMinima = this.obtenerFechaActual();
+
   solicitudForm = new FormGroup({
-    servicio: new FormControl('', Validators.required),
-    fecha: new FormControl('', Validators.required),
-    detalles: new FormControl('', Validators.required)
+    servicio: new FormControl('', [
+      Validators.required
+    ]),
+    fecha: new FormControl('', [
+      Validators.required
+    ]),
+    direccion: new FormControl('', [
+      Validators.required,
+      Validators.minLength(5)
+    ]),
+    detalles: new FormControl('', [
+      Validators.required,
+      Validators.minLength(10)
+    ])
   });
 
-  onSubmit() {
-    if (this.solicitudForm.valid) {
-      alert('Tu solicitud ha sido registrada. Un asesor coordinará el recojo a la brevedad.');
-      console.log(this.solicitudForm.value);
-      this.solicitudForm.reset();
-    } else {
+  private obtenerFechaActual(): string {
+    const ahora = new Date();
+    const anio = ahora.getFullYear();
+    const mes = String(ahora.getMonth() + 1).padStart(2, '0');
+    const dia = String(ahora.getDate()).padStart(2, '0');
+
+    return `${anio}-${mes}-${dia}`;
+  }
+
+  onSubmit(): void {
+    if (this.solicitudForm.invalid) {
       this.solicitudForm.markAllAsTouched();
+      return;
     }
+
+    const fechaSeleccionada =
+      this.solicitudForm.controls.fecha.value;
+
+    if (!fechaSeleccionada || fechaSeleccionada < this.fechaMinima) {
+      this.solicitudForm.controls.fecha.setErrors({
+        fechaPasada: true
+      });
+      this.solicitudForm.controls.fecha.markAsTouched();
+      return;
+    }
+
+    console.log(
+      'Solicitud de demostración:',
+      this.solicitudForm.getRawValue()
+    );
+
+    alert(
+      'La solicitud es válida. Todavía no se ha guardado en el servidor.'
+    );
   }
 }

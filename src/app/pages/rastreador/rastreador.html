@@ -1,48 +1,139 @@
-<div class="tracker-container">
-    <div class="tracker-header">
-        <h2>Rastrea el proceso</h2>
-        <p>Ingresa tu código de seguimiento para conocer el estado actual de tu mascota.</p>
-    </div>
 
-    <!-- Barra de búsqueda horizontal -->
-    <form class="tracker-search-bar" [formGroup]="rastreadorForm" (ngSubmit)="buscar()">
-        <div class="input-wrapper">
-            <input type="text" formControlName="codigo" placeholder="Ej: TRAV-2026">
-            @if (rastreadorForm.get('codigo')?.invalid && rastreadorForm.get('codigo')?.touched) {
-                <small class="error-inline">Ingresa un código válido</small>
-            }
-        </div>
-        <button type="submit" class="btn-mocha-search">Buscar</button>
+<div class="rastreador-container">
+  <header class="rastreador-header">
+    <div>
+      <h1>Seguimiento de tu mascota</h1>
+      <p>Consulta el estado del proceso y conoce cada etapa.</p>
+    </div>
+  </header>
+
+  <section class="busqueda-card">
+    <form (ngSubmit)="buscarSeguimiento()">
+      <div class="busqueda-icono">⌕</div>
+
+      <div class="busqueda-campo">
+        <label for="codigo">Código de seguimiento</label>
+        <input
+          id="codigo"
+          type="text"
+          name="codigo"
+          [(ngModel)]="codigo"
+          placeholder="Ej. TRAV-2026"
+          required
+        />
+      </div>
+
+      <button type="submit" class="btn-consultar">
+        <span>⌕</span> Consultar
+      </button>
+
+      <div class="busqueda-ayuda">
+        <span>ⓘ</span>
+        Ingresa el código proporcionado al registrar el servicio.
+      </div>
     </form>
 
-    <!-- Resultados (Se muestran al buscar) -->
-    @if (busquedaRealizada && resultado) {
-        <div class="tracker-results">
-            <div class="tracker-display">
-                <div class="tracker-header-info">
-                    <span>Mascota: <strong>"{{ resultado.mascota }}"</strong></span>
-                    <span>Código: <strong>{{ resultado.codigo }}</strong></span>
-                </div>
-                
-                <div class="tracker-steps">
-                    <div class="t-step completed"><div class="circle">✓</div><span>Recojo</span></div>
-                    
-                    <div class="t-step" [class.completed]="resultado.estado === 'Cremacion'" [class.active]="resultado.estado === 'Custodia'">
-                        <div class="circle">{{ resultado.estado === 'Cremacion' ? '✓' : '🛡️' }}</div><span>Custodia</span>
-                    </div>
-                    
-                    <div class="t-step" [class.active]="resultado.estado === 'Cremacion'">
-                        <div class="circle">{{ resultado.estado === 'Cremacion' ? '🔥' : '⏳' }}</div><span>Cremación</span>
-                    </div>
-                    
-                    <div class="t-step"><div class="circle">⏳</div><span>Urna</span></div>
-                    <div class="t-step"><div class="circle">🚗</div><span>Retorno</span></div>
-                </div>
-                
-                <p class="tracker-status-text">
-                    <strong>Estado actual:</strong> {{ resultado.mensaje }}
-                </p>
-            </div>
-        </div>
+    @if (mensajeError) {
+      <p class="mensaje-error" role="alert">{{ mensajeError }}</p>
     }
+  </section>
+
+  @if (mascota) {
+    <div class="contenido-rastreador">
+      <section class="solicitud-card">
+        <h2>Información de la solicitud</h2>
+
+        <div class="solicitud-contenido">
+          <div class="mascota-avatar">
+            <span>🐾</span>
+          </div>
+
+          <div class="solicitud-datos">
+            <div class="codigo-bloque">
+              <span class="etiqueta">Código de solicitud</span>
+              <strong>{{ mascota.codigo }}</strong>
+            </div>
+
+            <div class="estado-actual">
+              <span class="estado-icono">♥</span>
+              <span>{{ mascota.estado }}</span>
+            </div>
+
+            <div class="dato-fila">
+              <span class="dato-icono">🐾</span>
+              <span>Nombre de la mascota</span>
+              <strong>{{ mascota.mascota }}</strong>
+            </div>
+
+            <div class="dato-fila">
+              <span class="dato-icono">♟</span>
+              <span>Cliente</span>
+              <strong>{{ mascota.cliente }}</strong>
+            </div>
+
+            <div class="dato-fila">
+              <span class="dato-icono">▤</span>
+              <span>Servicio</span>
+              <strong>{{ mascota.servicio }}</strong>
+            </div>
+
+            <div class="dato-fila">
+              <span class="dato-icono">▦</span>
+              <span>Fecha programada</span>
+              <strong>{{ mascota.fecha }}</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="mensaje-afectuoso">
+          <span>♥</span>
+          Gracias por confiar en nosotros. Acompañamos este proceso con
+          respeto, cuidado y mucho amor.
+        </div>
+      </section>
+
+      <section class="progreso-card">
+        <h2>Etapas del proceso</h2>
+        <p class="progreso-descripcion">
+          Consulta el avance de la atención de tu mascota.
+        </p>
+
+        <div class="progreso-lista">
+          @for (paso of obtenerPasos(); track paso.nombre) {
+            <div
+              class="progreso-paso"
+              [class.completado]="paso.completado"
+              [class.activo]="paso.activo"
+            >
+              <div class="paso-indicador">
+                @if (paso.completado) {
+                  <span>✓</span>
+                } @else {
+                  <span>{{ $index + 1 }}</span>
+                }
+              </div>
+
+              <div class="paso-texto">
+                <strong>{{ paso.nombre }}</strong>
+
+                @if (paso.activo) {
+                  <small>Estado actual</small>
+                } @else if (paso.completado) {
+                  <small>Etapa completada</small>
+                } @else {
+                  <small>Pendiente</small>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      </section>
+    </div>
+  }
+
+  <div class="aviso-demo">
+    <span>ⓘ</span>
+    Este es un sistema de demostración. La información aún no está conectada
+    a una base de datos y no se comparte entre diferentes dispositivos.
+  </div>
 </div>

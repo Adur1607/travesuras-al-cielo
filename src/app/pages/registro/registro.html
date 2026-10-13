@@ -38,6 +38,47 @@
                 }
             </div>
 
+            <div class="form-group">
+                <input
+                    type="text"
+                    formControlName="nombreMascota"
+                    class="split-input"
+                    placeholder="Nombre de tu mascota"
+                >
+                @if (registroForm.get('nombreMascota')?.invalid && registroForm.get('nombreMascota')?.touched) {
+                    <small class="error-text">El nombre de la mascota es obligatorio.</small>
+                }
+            </div>
+
+            <div class="form-group">
+                <select
+                    formControlName="especie"
+                    class="split-input"
+                >
+                    <option value="">Selecciona la especie</option>
+                    <option value="Perro">Perro</option>
+                    <option value="Gato">Gato</option>
+                    <option value="Otro">Otro</option>
+                </select>
+                @if (registroForm.get('especie')?.invalid && registroForm.get('especie')?.touched) {
+                    <small class="error-text">Selecciona la especie de tu mascota.</small>
+                }
+            </div>
+
+            <div class="form-group">
+                <input
+                    type="number"
+                    formControlName="peso"
+                    class="split-input"
+                    placeholder="Peso en kilogramos"
+                    min="0.1"
+                    step="0.1"
+                >
+                @if (registroForm.get('peso')?.invalid && registroForm.get('peso')?.touched) {
+                    <small class="error-text">Ingresa un peso mayor que cero.</small>
+                }
+            </div>
+
             <button type="submit" class="btn-mocha">Crear Cuenta</button>
             
             <p class="form-footer">

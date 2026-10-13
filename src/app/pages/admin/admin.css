@@ -1,0 +1,408 @@
+
+:host {
+  display: block;
+  min-height: 70vh;
+  background: #faf7f4;
+  color: #4e342e;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.admin-container {
+  box-sizing: border-box;
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 100px 28px 35px;
+}
+
+/* Encabezado del panel */
+.admin-header {
+  position: static;
+  top: auto;
+  z-index: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  margin: 0 0 12px;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  transition: none;
+}
+
+.admin-header h1 {
+  position: static;
+  margin: 0 0 8px;
+  font-family: Georgia, serif;
+  font-size: 2.1rem;
+  line-height: 1.3;
+  color: #5d4037;
+}
+
+.admin-header p {
+  margin: 0;
+  color: #85746b;
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.admin-badge {
+  padding: 10px 17px;
+  border: 1px solid #e5d5ca;
+  border-radius: 30px;
+  background: #f0e6df;
+  color: #795548;
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Resumen */
+.admin-summary {
+  margin-bottom: 12px;
+}
+
+.summary-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 230px;
+  box-sizing: border-box;
+  padding: 12px 18px;
+  border: 1px solid #f0e6df;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 5px 18px #4e342e0a;
+}
+
+.summary-card span {
+  color: #85746b;
+  font-size: 0.9rem;
+}
+
+.summary-card strong {
+  color: #795548;
+  font-size: 2.2rem;
+}
+
+/* Formulario de asignación */
+.assignment-section {
+  margin-bottom: 20px;
+  padding: 22px;
+  border: 1px solid #eadbd1;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 5px 20px #4e342e0d;
+}
+
+.assignment-section h2,
+.admin-table-section h2 {
+  margin: 0 0 12px;
+  color: #5d4037;
+  font-family: Georgia, serif;
+  font-size: 1.5rem;
+}
+
+.assignment-section > p {
+  margin: 0 0 24px;
+  color: #85746b;
+  line-height: 1.6;
+}
+
+.assignment-section form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  min-width: 0;
+}
+
+.form-field label {
+  color: #5d4037;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.form-field select {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid #d8c5b8;
+  border-radius: 8px;
+  background: #fffdfb;
+  color: #4e342e;
+  font: inherit;
+  font-size: 0.92rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-field select:focus {
+  border-color: #8d6e63;
+  box-shadow: 0 0 0 3px #8d6e6320;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  grid-column: 1 / -1;
+  margin-top: 2px;
+}
+
+.btn-manage,
+.btn-cancel {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 43px;
+  padding: 11px 18px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.btn-manage {
+  border: 1px solid #795548;
+  background: #795548;
+  color: #fff;
+}
+
+.btn-manage:hover {
+  background: #5d4037;
+  transform: translateY(-1px);
+}
+
+.btn-cancel {
+  border: 1px solid #d8c5b8;
+  background: #fff;
+  color: #795548;
+}
+
+.btn-cancel:hover {
+  background: #f7f0eb;
+}
+
+/* Mensajes */
+.success-message {
+  margin-bottom: 24px;
+  padding: 15px 18px;
+  border: 1px solid #c8dfc9;
+  border-radius: 9px;
+  background: #edf7ed;
+  color: #2e6535;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.error-message {
+  color: #b3261e;
+  font-size: 0.82rem;
+}
+
+/* Tabla de solicitudes */
+.admin-table-section {
+  padding: 22px;
+  border: 1px solid #f0e6df;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 5px 20px #4e342e0d;
+}
+
+.admin-table-section h2 {
+  margin-bottom: 22px;
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid #eee5df;
+  border-radius: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+thead {
+  background: #f8f2ed;
+}
+
+th,
+td {
+  padding: 17px 15px;
+  border-bottom: 1px solid #eee8e3;
+  vertical-align: middle;
+}
+
+th {
+  color: #795548;
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+td {
+  color: #5e5049;
+  font-size: 0.87rem;
+  line-height: 1.5;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background: #fdfaf8;
+}
+
+.status-pending,
+.status-scheduled {
+  display: inline-block;
+  padding: 7px 11px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.status-pending {
+  background: #fff2cc;
+  color: #875d00;
+}
+
+.status-scheduled {
+  background: #e0f2e5;
+  color: #28643b;
+}
+
+.empty-message {
+  padding: 24px 0;
+  color: #85746b;
+  text-align: center;
+}
+
+.demo-notice {
+  margin: 20px 0 0;
+  color: #85746b;
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+/* Adaptación a tabletas y celulares */
+@media (max-width: 800px) {
+  .admin-container {
+    padding: 135px 18px 35px;
+  }
+
+  .admin-table-section,
+  .assignment-section {
+    padding: 22px;
+  }
+
+  .assignment-section form {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .admin-container {
+    padding: 125px 12px 28px;
+  }
+
+  .admin-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .admin-header h1 {
+    font-size: 1.7rem;
+  }
+
+  .summary-card {
+    width: 100%;
+  }
+
+  .admin-table-section,
+  .assignment-section {
+    padding: 17px;
+    border-radius: 12px;
+  }
+
+  .assignment-section h2,
+  .admin-table-section h2 {
+    font-size: 1.3rem;
+  }
+
+  .form-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .form-actions button {
+    width: 100%;
+  }
+
+  th,
+  td {
+    padding: 13px 12px;
+  }
+}
+
+/* Compactar el panel administrativo */
+.admin-container > .assignment-section {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.admin-container > .admin-table-section {
+  margin-top: 0;
+}
+/* Corrección de espaciado global en el panel administrativo */
+:host .admin-container > .admin-summary,
+:host .admin-container > .assignment-section,
+:host .admin-container > .admin-table-section {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+/* La regla global section de styles.css no debe añadir 100px */
+:host .admin-container > section.admin-summary {
+  padding: 0;
+  margin-bottom: 16px;
+}
+
+:host .admin-container > section.assignment-section {
+  padding: 22px;
+  margin-bottom: 16px;
+}
+
+:host .admin-container > section.admin-table-section {
+  padding: 22px;
+}
+
+/* Mantener compacto el encabezado */
+:host .admin-header {
+  margin-bottom: 16px;
+}
+
+:host .admin-summary .summary-card {
+  padding: 12px 18px;
+}

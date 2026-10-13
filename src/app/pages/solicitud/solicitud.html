@@ -1,43 +1,131 @@
-<div class="split-layout">
-    
-    <!-- Lado Izquierdo: Visual Emocional (Serenidad) -->
-    <div class="split-image" style="background: url('https://images.unsplash.com/photo-1541364983171-a8ba01e95cfc?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;"></div>
 
-    <!-- Lado Derecho: Formulario Minimalista -->
+<div class="split-layout">
+
+    <!-- Imagen del servicio -->
+    <div
+        class="split-image"
+        style="background: url('https://images.unsplash.com/photo-1541364983171-a8ba01e95cfc?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;"
+    ></div>
+
+    <!-- Formulario -->
     <div class="split-form">
         <h2>Agendar Servicio</h2>
-        <p class="subtitle">Selecciona el paquete y la fecha para programar el traslado respetuoso.</p>
-        
-        <form [formGroup]="solicitudForm" (ngSubmit)="onSubmit()">
-            
+
+        <p class="subtitle">
+            Selecciona el paquete y la fecha para programar
+            el traslado respetuoso.
+        </p>
+
+        <form
+            [formGroup]="solicitudForm"
+            (ngSubmit)="onSubmit()"
+        >
+
+            <!-- Tipo de cremación -->
             <div class="form-group">
-                <select formControlName="servicio" class="split-input">
-                    <option value="">¿Qué tipo de servicio buscas?</option>
-                    <option value="Individual">Cremación Individual (Con urna y cenizas)</option>
-                    <option value="Comunitaria">Cremación Comunitaria (Sin cenizas)</option>
-                    <option value="Presencial">Servicio Presencial Premium</option>
+                <select
+                    formControlName="servicio"
+                    class="split-input"
+                >
+                    <option value="">
+                        ¿Qué tipo de servicio buscas?
+                    </option>
+                    <option value="Individual">
+                        Cremación Individual (Con urna y cenizas)
+                    </option>
+                    <option value="Comunitaria">
+                        Cremación Colectiva (Sin cenizas)
+                    </option>
                 </select>
-                @if (solicitudForm.get('servicio')?.invalid && solicitudForm.get('servicio')?.touched) {
-                    <small class="error-text">Debes seleccionar un tipo de servicio.</small>
+
+                @if (
+                    solicitudForm.get('servicio')?.invalid &&
+                    solicitudForm.get('servicio')?.touched
+                ) {
+                    <small class="error-text">
+                        Debes seleccionar un tipo de servicio.
+                    </small>
                 }
             </div>
 
+            <!-- Fecha de recojo -->
             <div class="form-group">
-                <label style="font-size: 0.85rem; color: #795548; margin-bottom: 8px; display: block; font-family: 'Montserrat', sans-serif;">Fecha solicitada para el recojo:</label>
-                <input type="date" formControlName="fecha" class="split-input">
-                @if (solicitudForm.get('fecha')?.invalid && solicitudForm.get('fecha')?.touched) {
-                    <small class="error-text">La fecha de recojo es obligatoria.</small>
+                <label
+                    for="fecha"
+                    style="font-size: 0.85rem; color: #795548; margin-bottom: 8px; display: block; font-family: 'Montserrat', sans-serif;"
+                >
+                    Fecha solicitada para el recojo:
+                </label>
+
+                <input
+                    id="fecha"
+                    type="date"
+                    formControlName="fecha"
+                    class="split-input"
+                    [min]="fechaMinima"
+                >
+
+                @if (
+                    solicitudForm.get('fecha')?.hasError('fechaPasada') &&
+                    solicitudForm.get('fecha')?.touched
+                ) {
+                    <small class="error-text">
+                        La fecha no puede ser anterior a hoy.
+                    </small>
+                } @else if (
+                    solicitudForm.get('fecha')?.invalid &&
+                    solicitudForm.get('fecha')?.touched
+                ) {
+                    <small class="error-text">
+                        La fecha de recojo es obligatoria.
+                    </small>
                 }
             </div>
 
+            <!-- Dirección exacta -->
             <div class="form-group">
-                <textarea formControlName="detalles" class="split-input" placeholder="Indícanos el nombre de tu mascota, peso aproximado y la dirección exacta de recojo..." rows="3"></textarea>
-                @if (solicitudForm.get('detalles')?.invalid && solicitudForm.get('detalles')?.touched) {
-                    <small class="error-text">Por favor brinda los detalles de tu mascota y dirección.</small>
+                <input
+                    type="text"
+                    formControlName="direccion"
+                    class="split-input"
+                    placeholder="Dirección exacta de recojo"
+                    autocomplete="street-address"
+                >
+
+                @if (
+                    solicitudForm.get('direccion')?.invalid &&
+                    solicitudForm.get('direccion')?.touched
+                ) {
+                    <small class="error-text">
+                        Ingresa la dirección de recojo.
+                    </small>
                 }
             </div>
 
-            <button type="submit" class="btn-mocha">Confirmar Solicitud</button>
+            <!-- Datos de la mascota y referencias -->
+            <div class="form-group">
+                <textarea
+                    formControlName="detalles"
+                    class="split-input"
+                    placeholder="Nombre de tu mascota, peso aproximado y referencias de la dirección..."
+                    rows="3"
+                ></textarea>
+
+                @if (
+                    solicitudForm.get('detalles')?.invalid &&
+                    solicitudForm.get('detalles')?.touched
+                ) {
+                    <small class="error-text">
+                        Describe a tu mascota y agrega detalles
+                        del recojo (mínimo 10 caracteres).
+                    </small>
+                }
+            </div>
+
+            <button type="submit" class="btn-mocha">
+                Confirmar Solicitud
+            </button>
+
         </form>
     </div>
 

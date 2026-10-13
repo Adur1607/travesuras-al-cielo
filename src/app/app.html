@@ -1,23 +1,41 @@
 
 <header id="main-header" [class.scrolled]="isScrolled || !isHomePage">
-    <div class="logo">Travesuras al Cielo</div>
-    <nav id="nav-links">
-        <a routerLink="/home">Inicio</a>
-        <a routerLink="/login">Iniciar Sesión</a>
-        <a routerLink="/registro">Crear Cuenta</a>
-        <a routerLink="/solicitud">Agendar Servicio</a>
-        <a routerLink="/rastreador">Rastrear Estado</a>
-        <a routerLink="/cobertura">Cobertura</a>
+    <a class="logo" routerLink="/home" (click)="closeMenu()">
+        Travesuras al Cielo
+    </a>
+
+    <button
+        type="button"
+        class="menu-toggle"
+        (click)="toggleMenu()"
+        [attr.aria-expanded]="isMenuOpen"
+        aria-controls="nav-links"
+        [attr.aria-label]="isMenuOpen ? 'Cerrar menú' : 'Abrir menú'"
+    >
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <nav id="nav-links" [class.active]="isMenuOpen">
+        <a routerLink="/home" (click)="closeMenu()">Inicio</a>
+        <a routerLink="/login" (click)="closeMenu()">Iniciar Sesión</a>
+        <a routerLink="/registro" (click)="closeMenu()">Crear Cuenta</a>
+        <a routerLink="/solicitud" (click)="closeMenu()">Agendar Servicio</a>
+        <a routerLink="/rastreador" (click)="closeMenu()">Rastrear Estado</a>
+        <a routerLink="/cobertura" (click)="closeMenu()">Cobertura</a>
     </nav>
 </header>
 
-<!-- Contenedor limpio SIN padding para que la imagen suba hasta el tope -->
 <main>
     <router-outlet></router-outlet>
 </main>
 
 <footer>
     <div class="footer-content">
-        <p>&copy; 2026 Travesuras al Cielo. Creado con amor y máximo respeto para nuestras mascotas.</p>
+        <p>
+            &copy; 2026 Travesuras al Cielo.
+            Creado con amor y máximo respeto para nuestras mascotas.
+        </p>
     </div>
 </footer>
